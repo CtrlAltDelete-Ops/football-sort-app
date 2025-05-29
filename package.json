@@ -1,0 +1,27 @@
+{
+  "name": "sort-app",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/CtrlAltDelete-Ops/football-sort-app#readme",
+  "bugs": {
+    "url": "https://github.com/CtrlAltDelete-Ops/football-sort-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CtrlAltDelete-Ops/football-sort-app.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "env-cmd -f ./configure/dev.env nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.15.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
