@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const connectDB = require("./db/connectdb");
+const userRouter = require("./routers/userRouter");
 
 const port = process.env.PORT || 5050;
 
@@ -9,6 +10,7 @@ app.get("/", (req, res) => {
 });
 
 app.use(express.json());
+app.use("/users", userRouter);
 
 const runServer = async () => {
   try {

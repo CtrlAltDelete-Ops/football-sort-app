@@ -18,7 +18,10 @@
     "dev": "env-cmd -f ./configure/dev.env nodemon app.js"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "env-cmd": "^10.1.0",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.15.1"
   },
   "devDependencies": {
