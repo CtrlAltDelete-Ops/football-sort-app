@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const validator = require("validator");
 
 const userSchema = new mongoose.Schema(
   {
@@ -14,6 +15,13 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
       trim: true,
+      validate: {
+        validator: (value) => {
+          if (!validator.isEmail(value)) {
+            throw new Error("Invalid email format");
+          }
+        },
+      },
     },
     password: {
       type: String,
@@ -23,7 +31,7 @@ const userSchema = new mongoose.Schema(
     tokens: [
       {
         token: {
-          type: String
+          type: String,
         },
       },
     ],
@@ -42,14 +50,14 @@ userSchema.methods.toJSON = function () {
 };
 
 userSchema.methods.generateAuthToken = async function () {
-    const user = this;
-    try {
+  const user = this;
+  try {
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
-        algorithm: "HS256",
+      algorithm: "HS256",
     });
     user.tokens = user.tokens.concat({ token });
-    await user.save(); 
+    await user.save();
     return token;
   } catch (error) {
     console.error("Error generating auth token:", error);

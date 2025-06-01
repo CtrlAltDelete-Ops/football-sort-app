@@ -1,36 +1,62 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 const playerSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
+        unique: true,
+        validate: {
+            validator: (value) => {
+                if (!validator.isAlpha(value.replace(/\s+/g, ''))) {
+                    throw new Error('Player name must contain only letters and spaces');
+                }
+            },
+            message: 'Invalid player name'
+        },
+        minlength: 2,
+        maxlength: 50,
         trim: true
     },
     shooting: {
         type: Number,
-        enum: [1, 2, 3, 4, 5],
-        required: true
+        min: 1,
+        max: 5,
+        required: true,
     },
     passing: {
         type: Number,
-        enum: [1, 2, 3, 4, 5],
+        min: 1,
+        max: 5,
         required: true
     },
     dribbling: {
         type: Number,
-        enum: [1, 2, 3, 4, 5],
+        min: 1,
+        max: 5,
         required: true
     },
     defending: {
         type: Number,
-        enum: [1, 2, 3, 4, 5],
+        min: 1,
+        max: 5,
+        required: true
+    },
+    attacking: {
+        type: Number,
+        min: 1,
+        max: 5,
         required: true
     },
     leadership: {
-        type: Number,
-        enum: [1, 2, 3, 4, 5],
+        type: Boolean,
         required: true
     },
+    team: [{
+        team : {
+            type: String
+        }    
+    }],
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
