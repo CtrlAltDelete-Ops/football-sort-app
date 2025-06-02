@@ -1,6 +1,13 @@
 const Player = require('../models/player');
 const _ = require('lodash');
 
+const isOdd = (n) => {
+    return n % 2 !== 0;
+}
+const isEven = (n) => {
+    return n % 2 === 0;
+}
+
 const createPlayer = async (req, res) => {
     try {
         const player = new Player({
@@ -120,42 +127,71 @@ const getTeamStats = async (req, res) => {
 const generateTeams = async (req, res) => {
     try {
         const numberOfTeams = parseInt(req.body.numberOfTeams, 10);
-        if (isNan(numberOfTeams) || numberOfTeams < 2) {
+        if (isNaN(numberOfTeams) || numberOfTeams < 2) {
             return res.status(400).send({ message: 'Please enter a valid number of teams (minimum 2).' });
-        }   
+        }
         const user = req.user;
         const players = await Player.find({ owner: user._id });
         if (players.length === 0) {
             return res.status(404).send({ message: 'No players found' });
         }
- 
-        const teams = [];
-
-        for (let i = 0; i < numberOfTeams; i++) {
-            teams.push([]);
-}
-        
-        const skills = ['shooting', 'passing', 'dribbling', 'defending', 'leadership', 'attacking'];
-        
-        const sortedByShooting = [...players].sort((a, b) => b.shooting - a.shooting);
-        const sortedByPassing = [...players].sort((a, b) => b.passing - a.passing);
-        const sortedByDribbling = [...players].sort((a, b) => b.dribbling - a.dribbling);
-        const sortedByDefending = [...players].sort((a, b) => b.defending - a.defending);
-        const sortedByLeadership = [...players].sort((a, b) => b.leadership - a.leadership);
-        const sortedByAttacking = [...players].sort((a, b) => b.attacking - a.attacking);
-
-        for (i = 0; i < sortedByShooting.length; i++) {
-            const player = sortedByShooting[i];
-            const teamIndex = i % numberOfTeams;
-            teams[teamIndex].push(player);
+        if (numberOfTeams > players.length) {
+            return res.status(400).send({ message: 'Number of teams cannot exceed the number of players.' });
         }
 
+        const teams = [];
+        for (let i = 0; i < numberOfTeams; i++) {
+            teams.push([]);
+        }
         
+        const attacking = {};
+        const defending = {};
+        const chemistry = {};
+
+        const skills = ['shooting', 'passing', 'dribbling', 'defending', 'leadership', 'attacking'];
         
-        
+        players.forEach((player) => {
+            const attackingAbility = (player.attacking + player.dribbling + player.passing + player.shooting ) / 4
+            attacking[player.name] = Number(attackingAbility.toFixed(2));
+        })
+
+        players.forEach((player) => {
+            const defendingAbility = (player.defending + player.passing ) / 2
+            defending[player.name] = Number(defendingAbility.toFixed(2));
+        })
+
+        const attackingArray = Object.entries(attacking);
+
+        const sortByAttacking = attackingArray.sort((a, b) => b[1] - a[1]);
+        const sortedByAttacking = Object.fromEntries(sortByAttacking);
+
+        const defendingArray = Object.entries(defending);
+        const sortByDefending = defendingArray.sort((a, b) => b[1] - a[1]);
+        const sortedByDefending = Object.fromEntries(Object.entries(defending).sort((a, b) => b[1] - a[1]));
+
+        let x = 0
+        for (let i = 0; i < players.length; i++) {
+            const teamIndex = i % numberOfTeams;
+            const playerIndex = i % 2;
+            const playerName = Object.keys(players)[i];
+            const randomIndex = Math.floor(Math.random() * ((i + 2) - i + 1)) + i;
+            const playerInTeam = teams.some((team) => {
+                team.includes(playerName);
+            })
+
+            if (i === 0) {
+                teams[teamIndex].push(Object.fromEntries(sortedByAttacking[randomIndex]))
+            } else if (isOdd(i) && !playerInTeam) {
+                teams[teamIndex].push(Object.fromEntries(sortedByDefending[randomIndex]))
+            } else if (isEven(i) && !playerInTeam) {
+                teams[teamIndex].push(Object.fromEntries(sortedByAttacking[randomIndex]))
+            }
+            res.send(randomIndex)
+        }
         
     } catch (error) {
-        
+        res.status(400).send({ error: error.message });
+        console.error(error);
     }
 }
 
@@ -168,4 +204,5 @@ module.exports = {
     deletePlayer,
     deleteAllPlayers,
     getTeamStats,
+    generateTeams
 };

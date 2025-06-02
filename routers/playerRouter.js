@@ -10,5 +10,6 @@ router.get('/:id', auth, playerController.getPlayerById);
 router.patch('/:id', auth, playerController.updatePlayer);
 router.delete('/:id', auth, playerController.deletePlayer);
 router.delete('/', auth, playerController.deleteAllPlayers);
+router.post('/teams', auth, playerController.generateTeams);
 
 module.exports = router;
