@@ -48,10 +48,7 @@ const playerSchema = new mongoose.Schema({
         max: 5,
         required: true
     },
-    leadership: {
-        type: Boolean,
-        required: true
-    },
+    leadership: Boolean,
     team: [{
         team : {
             type: String
