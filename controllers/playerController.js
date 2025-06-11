@@ -1,6 +1,5 @@
 const Player = require("../models/player");
 const _ = require("lodash");
-const { use } = require("../routers/playerRouter");
 
 const isOdd = (n) => {
   return n % 2 !== 0;
@@ -96,7 +95,6 @@ const deletePlayer = async (req, res) => {
     }
     await player.deleteOne();
     res.send({ message: "Player deleted successfully" });
-    res.send(player);
   } catch (error) {
     res.status(500).send({ error: "Failed to delete player" });
     console.error(error);
@@ -126,7 +124,7 @@ const getTeamStats = async (req, res) => {
     });
     if (players.length === 0) {
       return res.status(404).send({ message: "No players found" });
-    }
+    };
 
     const stats = {
       totalPlayers: players.length,
@@ -180,52 +178,48 @@ const generateTeams = async (req, res) => {
       teams.push([]);
     }
 
-    const weightedAverages = [];
-    
+    const teamsForAverageTeamPower = [];
+    for (let i = 0; i < numberOfTeams; i++) {
+      teamsForAverageTeamPower.push([]);
+    }
 
+    const weightedAverages = {};
+    
     const skills = [
       "shooting",
       "passing",
       "dribbling",
       "defending",
-      "leadership",
       "attacking",
     ];
 
     const weights = {
-        shooting: 0.1,
+        shooting: 0.15,
         passing: 0.3,
         dribbling: 0.15,
-        defending: 0.2,
+        defending: 0.15,
         attacking: 0.25,
     };
 
     players.forEach((player) => {
-        skills.forEach((skill) => {
-            weightedAverages.push( Math.round(weights[skill] *  player[skill]));
-        })
+        const name = player.name;
+        const weightedAverage = skills.reduce((acc, skill) => acc + player[skill] * weights[skill], 0);
+        weightedAverages[name] = weightedAverage;
     })
 
-    console.log(weightedAverages);
-
-    const attackingArray = Object.entries(attacking);
-
-    const sortByAttacking = attackingArray.sort((a, b) => b[1] - a[1]);
-    const sortedByAttacking = Object.fromEntries(sortByAttacking);
-
-    const defendingArray = Object.entries(defending);
-    const sortByDefending = defendingArray.sort((a, b) => b[1] - a[1]);
-    const sortedByDefending = Object.fromEntries(sortByDefending);
-
-    const playersSet = new Set(sortByAttacking.map((player) => player[0]));
-
-    function chunkIntoGroupsOfThree(array) {
+    function chunkIntoGroupsOfTwo(array) {
         const groups = [];
-        for (let i = 0; i < array.length; i += 3) {
-          groups.push(array.slice(i, i + 3));
+        for (let i = 0; i < array.length; i += 2) {
+          groups.push(array.slice(i, i + 2));
         }
         return groups;
     }
+
+    const weightedAveragesArray = Object.entries(weightedAverages);
+    
+    const weightedAveragesSorted = weightedAveragesArray.sort((a, b) => b[1] - a[1]);
+    const weightedAveragesGroups = chunkIntoGroupsOfTwo(weightedAveragesSorted);
+    
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -235,56 +229,37 @@ const generateTeams = async (req, res) => {
         return array;
       }
 
-    function divideArrays(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = j % numberOfTeams;
-            
-        } 
-    }
-
-    const playerMap = new Map(players.map(p => [p.name, p]));
-
-    const attackingGroups = chunkIntoGroupsOfThree(sortByAttacking);
-    const defendingGroups = chunkIntoGroupsOfThree(sortByDefending);
-
-    const shuffledAttackingGroups = shuffleArray(attackingGroups);
-    const shuffledDefendingGroups = shuffleArray(defendingGroups);
-    
-    let attack = true;
-    for (i = 0; i < shuffledAttackingGroups.length; i++) {
-        const attackingGroup = shuffledAttackingGroups[i];
-        const defendingGroup = shuffledDefendingGroups[i];
-        
-        let j =0;
-        while (playersSet.size > 0){
-            const teamIndex = j % numberOfTeams;
-            if (attack && playersSet.has(attackingGroup[j][0])) {
-                const playerName = attackingGroup[j][0];
-                const player = playerMap.get(playerName);
-                teams[teamIndex].push(player);
-                playersSet.delete(playerName);
-                attack = false;
-                j++;
-            } else if (!attack && playersSet.has(defendingGroup[j][0])) {
-                const playerName = defendingGroup[j][0];
-                const player = playerMap.get(playerName);
-                teams[teamIndex].push(player);
-                playersSet.delete(playerName);
-                attack = true;
-                j++;
-            } else {
-                continue;  
-            }
-        }
-    }
-
-    console.log(teams);
-    console.log(playersSet);
-
-
     let x = 0;
-    
+    for (let i = 0; i < weightedAveragesGroups.length; i++) {
+        let j = 0;
+        const shuffledGroup = shuffleArray(weightedAveragesGroups[i]);
+        while (j < shuffledGroup.length) {
+            let teamIndex =  x % numberOfTeams;
+            const player = shuffledGroup[j];
+            const playerObject = players.find((p) => p.name === player[0]);
+            teams[teamIndex].push(playerObject);
+            teamsForAverageTeamPower[teamIndex].push(player);
+            j++;
+            x++;
+        }
+        console.log(shuffledGroup);
+    }
+    //Assign names to teams
+    teams.forEach((team, index) => {
+        team.unshift({ name: `Team ${index + 1}` });
+    })
 
+    //calculate avarage team power
+    const averageTeamPower = [];
+
+    teamsForAverageTeamPower.forEach((team, index) => averageTeamPower.push(
+        `Team ${index + 1}: ${team.reduce((acc, player) => acc + player[1], 0) / team.length}`
+    ))
+
+    res.send(teams);
+    console.log('teams sent successfully: ', teamsForAverageTeamPower);
+    console.log('averageTeamPower: ', averageTeamPower);
+    
   } catch (error) {
     res.status(400).send({ error: error.message });
     console.error(error);
