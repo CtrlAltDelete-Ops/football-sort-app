@@ -219,7 +219,6 @@ const generateTeams = async (req, res) => {
     
     const weightedAveragesSorted = weightedAveragesArray.sort((a, b) => b[1] - a[1]);
     const weightedAveragesGroups = chunkIntoGroupsOfTwo(weightedAveragesSorted);
-    
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -255,6 +254,7 @@ const generateTeams = async (req, res) => {
     teamsForAverageTeamPower.forEach((team, index) => averageTeamPower.push(
         `Team ${index + 1}: ${team.reduce((acc, player) => acc + player[1], 0) / team.length}`
     ))
+    
 
     res.send(teams);
     console.log('teams sent successfully: ', teamsForAverageTeamPower);

@@ -3,16 +3,18 @@ const app = express();
 const connectDB = require("./db/connectdb");
 const userRouter = require("./routers/userRouter");
 const playerRouter = require("./routers/playerRouter");
+const path = require("path");
 
 const port = process.env.PORT || 5050;
 
-app.get("/", (req, res) => {
-  res.send("Football API is running");
-});
-
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use("/users", userRouter);
 app.use("/players", playerRouter);
+
+app.get("/", (req, res) => {
+  res.render(index);
+});
 
 const runServer = async () => {
   try {
