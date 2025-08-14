@@ -543,4 +543,8 @@ footer hr {
 	.team-content .player {
 		min-width: 60%;
 	}
+
+	.footer {
+		margin-top: auto;
+	}
 }
