@@ -1,159 +1,261 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <link rel="stylesheet" href="./script/script.js">
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-  <link rel="stylesheet" as="style" onload="this.rel='stylesheet'"
-    href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800" />
-
-  <title>TeamUp</title>
-  <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml">
-
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="icons/favicon.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Sort App</title>
 </head>
 
 <body>
-  <div class="relative flex size-full min-h-screen flex-col bg-[#1a1a1a] dark group/design-root overflow-x-hidden"
-    style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
-    <div class="layout-container flex h-full grow flex-col">
-      <header
-        class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#2f2f3d] px-10 py-3">
-        <div class="flex items-center gap-4 text-white">
-          <div class="size-4">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.263 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z"
-                fill="currentColor"></path>
-              <path fill-rule="evenodd" clip-rule="evenodd"
-                d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519ZM37.5563 18.7877C36.3176 19.3925 34.8502 19.8839 33.2571 20.2642C30.5836 20.9025 27.3973 21.2655 24 21.2655C20.6027 21.2655 17.4164 20.9025 14.7429 20.2642C13.1498 19.8839 11.6824 19.3925 10.4436 18.7877V34.1275C10.4515 34.1545 10.5427 34.4867 11.379 35.027C12.298 35.6207 13.7492 36.2054 15.6717 36.6644C18.0007 37.2205 20.8712 37.5564 24 37.5564C27.1288 37.5564 29.9993 37.2205 32.3283 36.6644C34.2508 36.2054 35.702 35.6207 36.621 35.027C37.4573 34.4867 37.5485 34.1546 37.5563 34.1275V18.7877ZM41.5563 13.8546V34.1455C41.5563 36.1078 40.158 37.5042 38.7915 38.3869C37.3498 39.3182 35.4192 40.0389 33.2571 40.5551C30.5836 41.1934 27.3973 41.5564 24 41.5564C20.6027 41.5564 17.4164 41.1934 14.7429 40.5551C12.5808 40.0389 10.6502 39.3182 9.20848 38.3869C7.84205 37.5042 6.44365 36.1078 6.44365 34.1455L6.44365 13.8546C6.44365 12.2684 7.37223 11.0454 8.39581 10.2036C9.43325 9.3505 10.8137 8.67141 12.343 8.13948C15.4203 7.06909 19.5418 6.44366 24 6.44366C28.4582 6.44366 32.5797 7.06909 35.657 8.13948C37.1863 8.67141 38.5667 9.3505 39.6042 10.2036C40.6278 11.0454 41.5563 12.2684 41.5563 13.8546Z"
-                fill="currentColor"></path>
-            </svg>
-          </div>
-          <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">TeamUp</h2>
-        </div>
-        <div class="flex flex-1 justify-end gap-8">
-          <div class="flex items-center gap-9">
-            <a class="text-white text-sm font-medium leading-normal" href="index.html">Home</a>
-            <a class="text-white text-sm font-medium leading-normal" href="login.html">Login</a>
-          </div>
-          <div class="flex gap-2">
-            <button onclick="window.location.href = 'signup.html';"
-              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#fbfbfd] text-[#16161d] text-sm font-bold leading-normal tracking-[0.015em]">
-              <span class="truncate">Sign Up</span>
-            </button>
-          </div>
-        </div>
-      </header>
-      <div class="px-40 flex flex-1 justify-center py-5">
-        <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-          <div class="@container">
-            <div class="flex flex-col gap-6 px-4 py-10 @[480px]:gap-8 @[864px]:flex-row">
-              <div
-                class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl @[480px]:h-auto @[480px]:min-w-[400px] @[864px]:w-full"
-                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDnCRPBoMnlEVxf3tJBvVpa2Q7lkVRoemV3exefTidLzV4SLt-v-1-zEFUvCnjmY5rwQ-K763WIxbx5fpI7i8ba7E6z8zYHRlQt1kK9riWKrLJnckQvXWANLxubIZSIY5aU-ovj4s6kAIr-zstLdQdrnTpbt9tytOBUUHJUDqaWQZ3RFAimz6vyAWG-shwBnR7taW12bet0ld29PPBS2Fn6crFzrWaExbV2d3cd6e9nnchv_q3GfQz6jUfOCKVExd6YabXPx39aa5M");'>
-              </div>
-              <div class="flex flex-col gap-6 @[480px]:min-w-[400px] @[480px]:gap-8 @[864px]:justify-center">
-                <div class="flex flex-col gap-2 text-left">
-                  <h1
-                    class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]"
-                    style="text-align: left;">
-                    TeamUp: The Ultimate Football Team App
-                  </h1>
-                  <h2
-                    class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                    Effortlessly organize your football players and create balanced teams with our advanced algorithm.
-                    Spend less time on logistics and more time on the game.
-                  </h2>
-                </div>
-                <button onclick="window.location.href = 'signup.html';"
-                  class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#fbfbfd] text-[#16161d] text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
-                  <span class="truncate">Get Started</span>
+    <nav>
+        <ul>
+            <li class="nav-item logo ">
+                <img src="icons/favicon.svg" alt="" />
+                <p id="app-name">Sort App</p>
+            </li>
+            <li class="nav-item linkedin">
+                <svg
+                    id="linkedin"
+                    width="25px"
+                    height="25px"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                >
+                    <path
+                        d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"
+                    />
+                </svg>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <section class="player_management left">
+            <div class="btn">
+                <button id="add-player-btn">
+                    <i class="fa-solid fa-plus"></i>
                 </button>
-              </div>
+                <p class="create-player">Create Player</p>
             </div>
-          </div>
-          <div class="flex flex-col gap-10 px-4 py-10 @container">
-            <div class="flex flex-col gap-4">
-              <h1
-                class="text-white tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
-                Key Features
-              </h1>
-              <p class="text-white text-base font-normal leading-normal max-w-[720px]">
-                TeamUp offers a range of features designed to simplify team management and enhance your football
-                experience.
-              </p>
+            <div class="player-management-content hidden">
+                <div class="profile">
+                    <div class="icon"><i class="fas fa-user"></i></div>
+                </div>
+                <div class="player-creation-content">
+                    <div class="instructions">
+                        The player stats should not be less than 0 or more than 5!
+                    </div>
+
+                    <form action="" method="POST">
+                        <input type="text" id="name" class="stat active" placeholder="Player Name" min="2" max="17"/>
+                        <input type="number" id="shooting" class="stat active" placeholder="Shooting" step="any" max="5" />
+                        <input type="number" id="passing" class="stat active" placeholder="Passing" step="any" max="5" />
+                        <input type="number" id="dribbling" class="stat active" placeholder="Dribbling" step="any" max="5" />
+                        <input type="number" id="defending" class="stat active" placeholder="Defending" step="any" max="5" />
+                        <input type="number" id="attacking" class="stat active" placeholder="Attacking" step="any" max="5" />
+                        <div class="leadership">
+                            <input type="checkbox" id="Leadership" class="stat active" />
+                            <label>Leadership</label>
+                        </div>
+                        <button class="submit stat" type="submit">Create</button>
+                    </form>
+                </div>
             </div>
-            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-0">
-              <div class="flex flex-1 gap-3 rounded-lg border border-[#434356] bg-[#21212b] p-4 flex-col">
-                <div class="text-white" data-icon="Users" data-size="24px" data-weight="regular">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor"
-                    viewBox="0 0 256 256">
-                    <path
-                      d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z">
-                    </path>
-                  </svg>
+        </section>
+        <div class="right">
+            <section class="player-list-parent right">
+                <div class="player-list">
+                    <h3 class="sec-title">Player List</h3>
+                    <div class="player">
+                        <div class="profile">
+                            <div class="icon"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="player-details">
+                            <div class="name">Ismail Amin</div>
+                            <div class="attacking-power">Attacking: <span>4.3</span></div>
+                            <div class="defending-power">Defending: <span>3.5</span></div>
+                            <button class="delete btn">Delete Player</button>
+                        </div>
+                    </div>
+                    <div class="player">
+                        <div class="profile">
+                            <div class="icon"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="player-details">
+                            <div class="name">Ismail Amin</div>
+                            <div class="attacking-power">Attacking: <span>4.3</span></div>
+                            <div class="defending-power">Defending: <span>3.5</span></div>
+                            <button class="delete btn">Delete Player</button>
+                        </div>
+                    </div>
+                    <div class="player">
+                        <div class="profile">
+                            <div class="icon"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="player-details">
+                            <div class="name">Ismail Amin</div>
+                            <div class="attacking-power">Attacking: <span>4.3</span></div>
+                            <div class="defending-power">Defending: <span>3.5</span></div>
+                            <button class="delete btn">Delete Player</button>
+                        </div>
+                    </div>
+                    <div class="player">
+                        <div class="profile">
+                            <div class="icon"><i class="fas fa-user"></i></div>
+                        </div>
+                        <div class="player-details">
+                            <div class="name">Ismail Amin</div>
+                            <div class="attacking-power">Attacking: <span>4.3</span></div>
+                            <div class="defending-power">Defending: <span>3.5</span></div>
+                            <button class="delete btn">Delete Player</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex flex-col gap-1">
-                  <h2 class="text-white text-base font-bold leading-tight">Player Management</h2>
-                  <p class="text-[#a3a3b8] text-sm font-normal leading-normal">
-                    Easily add, edit, and manage your football players with detailed profiles, including skill levels
-                    and positions.
-                  </p>
+
+            </section>
+            <section class="team-generation">
+                <button class="gen-teams btn">Generate teams</button>
+                <div class="team-number">
+                    <div id="number-of-teams">2</div>
+                    <div class="up-down">
+                        <button id="up"><i class="fa-solid fa-chevron-up btn" ></i></button>
+                        <button id="down"><i class="fa-solid fa-chevron-down btn"></i></button>
+                    </div>
                 </div>
-              </div>
-              <div class="flex flex-1 gap-3 rounded-lg border border-[#434356] bg-[#21212b] p-4 flex-col">
-                <div class="text-white" data-icon="Shuffle" data-size="24px" data-weight="regular">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor"
-                    viewBox="0 0 256 256">
-                    <path
-                      d="M237.66,178.34a8,8,0,0,1,0,11.32l-24,24a8,8,0,0,1-11.32-11.32L212.69,192H200.94a72.12,72.12,0,0,1-58.59-30.15l-41.72-58.4A56.1,56.1,0,0,0,55.06,80H32a8,8,0,0,1,0-16H55.06a72.12,72.12,0,0,1,58.59,30.15l41.72,58.4A56.1,56.1,0,0,0,200.94,176h11.75l-10.35-10.34a8,8,0,0,1,11.32-11.32ZM143,107a8,8,0,0,0,11.16-1.86l1.2-1.67A56.1,56.1,0,0,1,200.94,80h11.75L202.34,90.34a8,8,0,0,0,11.32,11.32l24-24a8,8,0,0,0,0-11.32l-24-24a8,8,0,0,0-11.32,11.32L212.69,64H200.94a72.12,72.12,0,0,0-58.59,30.15l-1.2,1.67A8,8,0,0,0,143,107Zm-30,42a8,8,0,0,0-11.16,1.86l-1.2,1.67A56.1,56.1,0,0,1,55.06,176H32a8,8,0,0,0,0,16H55.06a72.12,72.12,0,0,0,58.59-30.15l1.2-1.67A8,8,0,0,0,113,149Z">
-                    </path>
-                  </svg>
+                <div class="teams">
+                    <div class="team">
+                        <h4>Team 1</h4>
+                        <div class="team-content">
+                            <div class="player">
+                                <div class="profile">
+                                    <div class="icon"><i class="fas fa-user"></i></div>
+                                </div>
+                                <div class="player-details">
+                                    <div class="name">Ismail Amin</div>
+                                    <div class="attacking-power">Attacking: <span>4.3</span></div>
+                                    <div class="defending-power">Defending: <span>3.5</span></div>
+                                    <div class="team">Team A</div>
+                                </div>
+                            </div>
+                            <div class="player">
+                                <div class="profile">
+                                    <div class="icon"><i class="fas fa-user"></i></div>
+                                </div>
+                                <div class="player-details">
+                                    <div class="name">Ismail Amin</div>
+                                    <div class="attacking-power">Attacking: <span>4.3</span></div>
+                                    <div class="defending-power">Defending: <span>3.5</span></div>
+                                    <div class="team">Team A</div>
+                                </div>
+                            </div>
+                            <div class="player">
+                                <div class="profile">
+                                    <div class="icon"><i class="fas fa-user"></i></div>
+                                </div>
+                                <div class="player-details">
+                                    <div class="name">Ismail Amin</div>
+                                    <div class="attacking-power">Attacking: <span>4.3</span></div>
+                                    <div class="defending-power">Defending: <span>3.5</span></div>
+                                    <div class="team">Team A</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team">
+                        <h4>Team 2</h4>
+                        <div class="team-content">
+                            <div class="player">
+                                <div class="profile">
+                                    <div class="icon"><i class="fas fa-user"></i></div>
+                                </div>
+                                <div class="player-details">
+                                    <div class="name">Ismail Amin</div>
+                                    <div class="attacking-power">Attacking: <span>4.3</span></div>
+                                    <div class="defending-power">Defending: <span>3.5</span></div>
+                                    <div class="team">Team A</div>
+                                </div>
+                            </div>
+                            <div class="player">
+                                <div class="profile">
+                                    <div class="icon"><i class="fas fa-user"></i></div>
+                                </div>
+                                <div class="player-details">
+                                    <div class="name">Ismail Amin</div>
+                                    <div class="attacking-power">Attacking: <span>4.3</span></div>
+                                    <div class="defending-power">Defending: <span>3.5</span></div>
+                                    <div class="team">Team A</div>
+                                </div>
+                            </div>
+                            <div class="player">
+                                <div class="profile">
+                                    <div class="icon"><i class="fas fa-user"></i></div>
+                                </div>
+                                <div class="player-details">
+                                    <div class="name">Ismail Amin</div>
+                                    <div class="attacking-power">Attacking: <span>4.3</span></div>
+                                    <div class="defending-power">Defending: <span>3.5</span></div>
+                                    <div class="team">Team A</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team">
+                        <h4>Team 3</h4>
+                        <div class="team-content">
+                            <div class="player">
+                                <div class="profile">
+                                    <div class="icon"><i class="fas fa-user"></i></div>
+                                </div>
+                                <div class="player-details">
+                                    <div class="name">Ismail Amin</div>
+                                    <div class="attacking-power">Attacking: <span>4.3</span></div>
+                                    <div class="defending-power">Defending: <span>3.5</span></div>
+                                    <div class="team">Team A</div>
+                                </div>
+                            </div>
+                            <div class="player">
+                                <div class="profile">
+                                    <div class="icon"><i class="fas fa-user"></i></div>
+                                </div>
+                                <div class="player-details">
+                                    <div class="name">Ismail Amin</div>
+                                    <div class="attacking-power">Attacking: <span>4.3</span></div>
+                                    <div class="defending-power">Defending: <span>3.5</span></div>
+                                    <div class="team">Team A</div>
+                                </div>
+                            </div>
+                            <div class="player">
+                                <div class="profile">
+                                    <div class="icon"><i class="fas fa-user"></i></div>
+                                </div>
+                                <div class="player-details">
+                                    <div class="name">Ismail Amin</div>
+                                    <div class="attacking-power">Attacking: <span>4.3</span></div>
+                                    <div class="defending-power">Defending: <span>3.5</span></div>
+                                    <div class="team">Team A</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex flex-col gap-1">
-                  <h2 class="text-white text-base font-bold leading-tight">Smart Team Sorting</h2>
-                  <p class="text-[#a3a3b8] text-sm font-normal leading-normal">
-                    Our intelligent algorithm automatically sorts players into balanced teams based on skill levels,
-                    ensuring fair and competitive matches.
-                  </p>
-                </div>
-              </div>
-              <div class="flex flex-1 gap-3 rounded-lg border border-[#434356] bg-[#21212b] p-4 flex-col">
-                <div class="text-white" data-icon="Clock" data-size="24px" data-weight="regular">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor"
-                    viewBox="0 0 256 256">
-                    <path
-                      d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z">
-                    </path>
-                  </svg>
-                </div>
-                <div class="flex flex-col gap-1">
-                  <h2 class="text-white text-base font-bold leading-tight">Time-Saving</h2>
-                  <p class="text-[#a3a3b8] text-sm font-normal leading-normal">
-                    Save valuable time by automating the team creation process, allowing you to focus on coaching and
-                    playing.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <hr class="my-4 border-gray-600">
-      <footer class="flex justify-center">
-        <div class="flex max-w-[960px] flex-1 flex-col">
-          <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
-            <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
-              <a class="text-[#a3a3b8] text-sm font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
-              <a class="text-[#a3a3b8] text-sm font-normal leading-normal min-w-40" href="#">Terms of Service</a>
-              <a class="text-[#a3a3b8] text-sm font-normal leading-normal min-w-40" href="#">Contact Us</a>
-            </div>
-            <p class="text-[#a3a3b8] text-sm font-normal leading-normal">@2025 TeamUp. All rights reserved.</p>
-          </footer>
-        </div>
-      </footer>
+        </section>
     </div>
-  </div>
+    </div>
+    <footer>
+        <hr>
+        <div class="footer-content">
+            &COPY 2025 Ismail Amin. All rights reserved
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>

@@ -4,9 +4,11 @@ const connectDB = require("./db/connectdb");
 const userRouter = require("./routers/userRouter");
 const playerRouter = require("./routers/playerRouter");
 const path = require("path");
+const cors = require("cors");
 
 const port = process.env.PORT || 5050;
 
+app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use("/users", userRouter);
